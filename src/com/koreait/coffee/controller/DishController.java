@@ -2,8 +2,6 @@ package com.koreait.coffee.controller;
 
 import com.koreait.coffee.config.MysqlConfig;
 import com.koreait.coffee.model.dto.Dish;
-import com.koreait.coffee.model.dto.DishFlavor;
-import com.koreait.coffee.model.dto.ShoppingCart;
 import com.koreait.coffee.model.mapper.CategoryMapper;
 import com.koreait.coffee.model.mapper.DishFlavorMapper;
 import com.koreait.coffee.model.mapper.DishMapper;
@@ -37,8 +35,8 @@ public class DishController {
      *
      * @param dish
      */
-    public DishFlavor addDishFlavor(Dish dish){
-        return dishFlavorMapper.addDishFlavor(dish);
+    public void addDishFlavor(Dish dish){
+        dishFlavorMapper.addDishFlavor(dish);
     }
 
     /**
