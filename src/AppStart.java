@@ -1,9 +1,11 @@
 import com.koreait.coffee.view.MainView;
 
-public class AppStart {
-    public static void main(String[] args) {
-        MainView mainView = new MainView();
+import java.time.LocalDateTime;
 
+public class AppStart {
+    public static void main (String[] args) {
+        MainView mainView = new MainView();
+        System.out.println(LocalDateTime.now());
         mainView.mainView();
     }
 }

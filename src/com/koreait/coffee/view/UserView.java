@@ -1,10 +1,38 @@
 package com.koreait.coffee.view;
 
-public class UserView {
+import com.koreait.coffee.model.dto.User;
 
+import java.util.Scanner;
+
+public class UserView {
+public Scanner sc = new Scanner(System.in);
     public void signIn(){
-        System.out.println();
+        while (true){
+            System.out.println("  1.핸드폰번호 입력    2.적립안함");
+            int choose = 0;
+            try {
+                choose = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("ERROR");
+                sc.nextLine();
+                continue;
+            }
+            switch (choose){
+                case 1:
+                    System.out.println("핸드폰번호를 입력하세요:");
+                    String phoneNumber = sc.next();
+                    User user = new User();
+                    user.setPhoneNumber(phoneNumber);
+                    return;
+                case 2:
+                    return;
+
+            }
+
+        }
     }
-    }
+
+}
+
 
 

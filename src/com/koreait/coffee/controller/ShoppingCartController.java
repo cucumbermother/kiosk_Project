@@ -11,6 +11,7 @@ public class ShoppingCartController {
     public ShoppingCartMapper mapper = sqlSession.getMapper(ShoppingCartMapper.class);
 
     public void add(ShoppingCart shoppingCart){
+
         mapper.insertShoppingCart(shoppingCart);
     }
 
@@ -30,7 +31,7 @@ public class ShoppingCartController {
         return mapper.selectShoppingCart();
     }
 
-    public Double getAmount(Integer shoppingCartId, Integer dishId){
-        return mapper.getAmount(shoppingCartId,dishId);
+    public void getAmount(Integer shoppingCartId, Integer dishId){
+         mapper.getAmount(shoppingCartId,dishId);
     }
 }

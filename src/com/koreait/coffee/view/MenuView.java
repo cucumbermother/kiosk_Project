@@ -4,7 +4,8 @@ import com.koreait.coffee.controller.CategoryController;
 import com.koreait.coffee.controller.DishController;
 import com.koreait.coffee.controller.ShoppingCartController;
 import com.koreait.coffee.model.dto.*;
-
+import java.sql.Wrapper;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class MenuView {
     public ShoppingCartController shoppingCartController = new ShoppingCartController();
     public CategoryController categoryController = new CategoryController();
     public DishController dishController = new DishController();
-
+    public UserView userView = new UserView();
     /**
      * 카테고리 보여주는 메소드
      * @param type
@@ -72,7 +73,6 @@ public class MenuView {
      */
     // 선근호 11-29 21:14 수정
     public void menuView(Integer categoryId){
-
         while (true) {
             List<Dish> dishesByCategoryId = dishController.getDishesByCategoryId(categoryId);
             Category categoryById = categoryController.getCategoryById(categoryId);
@@ -81,10 +81,12 @@ public class MenuView {
             for (Dish dish : dishesByCategoryId) {
                 System.out.println(dish.getId() + ":" + dish.getName());
             }
+            System.out.println("0:결제하기");
             System.out.print("번호를 입력하세요 :");
             int choose = sc.nextInt();
             switch (choose){
-                case 1:
+
+                case 1,2,3,4:
                     Temperature temperature = orderView.temperatureView();
                     Shot shot = orderView.shotView();
                     Dish dish = dishController.getDishById(choose);
@@ -92,17 +94,44 @@ public class MenuView {
                     dish.setTemperature(temperature);
                     dishController.addDishFlavor(dish);
                     ShoppingCart shoppingCart = new ShoppingCart();
+                    shoppingCart.setDishId(dish.getId());
+                    shoppingCart.setNumber(+1);
+                    shoppingCart.setCreateTime(LocalDateTime.now());
+                    shoppingCartController.add(shoppingCart);
                     break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
+
+                case 0:
+                    payView();
+                    return;
                 default:
                     System.out.println("뒤로가기");
             }
         }
+    }
+    public void payView(){
+        while (true){
+            System.out.print("결제하시겠습니까? 1.OK   2.NO");
+            int choose = sc.nextInt();
+            switch (choose){
+                case 1:
+                    pointView();
+                    paySuccess();
+                    break;
+                case 2:
+                    return;
+                default:
+                    return;
+            }
+        }
+    }
+    public void pointView(){
+            userView.signIn();
+    }
+
+    public void paySuccess() {
+        System.out.println("결제 성공");
+
+        return;
     }
 }
 
