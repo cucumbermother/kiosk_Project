@@ -9,4 +9,7 @@ public class OrderController {
     public OrderMapper mapper = sqlSession.getMapper(OrderMapper.class);
 
     void getAllOder(){mapper.getAllOder();}
+
+    void addOrders(){mapper.addOrders();}
+
 }
