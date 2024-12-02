@@ -111,6 +111,7 @@ public class MenuView {
     public void payView(){
         while (true){
             System.out.print("결제하시겠습니까? 1.OK   2.NO");
+
             int choose = sc.nextInt();
             switch (choose){
                 case 1:
